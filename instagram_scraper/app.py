@@ -211,7 +211,7 @@ class InstagramScraper(object):
                 elif len(args) > 0:
                     url = args[0]
                 if retry < MAX_RETRIES:
-                    self.logger.warning('Retry after exception {0} on {1}'.format(repr(e), url))
+                    self.logger.debug('Retry after exception {0} on {1}'.format(repr(e), url))
                     self.sleep(retry_delay)
                     retry_delay = min( 2 * retry_delay, MAX_RETRY_DELAY )
                     retry = retry + 1
@@ -1178,11 +1178,11 @@ class InstagramScraper(object):
                                     media += " from https://www.instagram.com/p/" + item['shortcode']
                                 if downloaded - downloaded_before > 0:
                                     # if we got some data on this iteration do not count it as a failure
-                                    self.logger.warning('Continue after exception {0} on {1}'.format(repr(e), media))
+                                    self.logger.debug('Continue after exception {0} on {1}'.format(repr(e), media))
                                     retry = 0 # the next fail will be first in a row with no data
                                     continue
                                 if retry < MAX_RETRIES:
-                                    self.logger.warning('Retry after exception {0} on {1}'.format(repr(e), media))
+                                    self.logger.debug('Retry after exception {0} on {1}'.format(repr(e), media))
                                     self.sleep(retry_delay)
                                     retry_delay = min( 2 * retry_delay, MAX_RETRY_DELAY )
                                     retry = retry + 1
