@@ -982,6 +982,9 @@ class InstagramScraper(object):
                         yield item
 
                     if end_cursor:
+                        self.sleep(415) # sleep between queries
+                        # 410 didn't work
+                        # 415 worked
                         media, end_cursor = self.__query_media(user['id'], end_cursor)
                     else:
                         return
