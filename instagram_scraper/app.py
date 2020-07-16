@@ -1608,6 +1608,10 @@ def main():
     else:
         scraper.authenticate_as_guest()
 
+    if not scraper.authenticated:
+        scraper.logger.error('There was an error authenticating, see above.')
+        raise
+
     if args.followings_input:
         scraper.usernames = list(scraper.query_followings_gen(scraper.login_user))
         if args.followings_output:
