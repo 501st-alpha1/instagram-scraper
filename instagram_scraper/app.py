@@ -83,6 +83,7 @@ input = threaded_input
 class PartialContentException(Exception):
     pass
 
+from random import *
 class InstagramScraper(object):
     """InstagramScraper scrapes and downloads an instagram user's photos and videos"""
 
@@ -604,6 +605,7 @@ class InstagramScraper(object):
         return node
 
     def __get_media_details(self, shortcode):
+        self.sleep(randint(10, 30))
         resp = self.get_json(VIEW_MEDIA_URL.format(shortcode))
 
         if resp is not None:
